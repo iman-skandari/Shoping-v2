@@ -9,7 +9,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { products, type Product } from "@/data/mockData";
+import {
+  products,
+  getPricing,
+  SHIPPING_COST,
+  FREE_SHIPPING_THRESHOLD,
+  type Product,
+} from "@/data/mockData";
 
 type CartEntry = { id: number; quantity: number };
 
@@ -19,6 +25,11 @@ type CartContextValue = {
   items: CartItem[];
   totalCount: number;
   totalPrice: number;
+  listTotal: number;
+  discount: number;
+  shipping: number;
+  payable: number;
+  hydrated: boolean;
   isOpen: boolean;
   getQuantity: (id: number) => number;
   addItem: (id: number) => void;
@@ -102,10 +113,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     [items]
   );
 
-  const totalPrice = useMemo(
-    () => items.reduce((sum, i) => sum + i.product.price * i.quantity, 0),
-    [items]
+ const summary = useMemo(() => {
+  const listTotal = items.reduce(
+    (sum, i) => sum + getPricing(i.product).listPrice * i.quantity,
+    0
   );
+  const totalPrice = items.reduce(
+    (sum, i) => sum + getPricing(i.product).unitPrice * i.quantity,
+    0
+  );
+  const shipping =
+    totalPrice === 0 || totalPrice >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+  return {
+    listTotal,
+    totalPrice,
+    discount: listTotal - totalPrice,
+    shipping,
+    payable: totalPrice + shipping,
+  };
+}, [items]);
 
   const getQuantity = useCallback(
     (id: number) => entries.find((e) => e.id === id)?.quantity ?? 0,
@@ -113,22 +139,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
   );
 
   const value = useMemo<CartContextValue>(
-    () => ({
-      items,
-      totalCount,
-      totalPrice,
-      isOpen,
-      getQuantity,
-      addItem,
-      increase: addItem,
-      decrease,
-      removeItem,
-      clear,
-      openCart,
-      closeCart,
-    }),
-    [items, totalCount, totalPrice, isOpen, getQuantity, addItem, decrease, removeItem, clear, openCart, closeCart]
-  );
+  () => ({
+    items,
+    totalCount,
+    ...summary,
+    hydrated,
+    isOpen,
+    getQuantity,
+    addItem,
+    increase: addItem,
+    decrease,
+    removeItem,
+    clear,
+    openCart,
+    closeCart,
+  }),
+  [items, totalCount, summary, hydrated, isOpen, getQuantity, addItem, decrease, removeItem, clear, openCart, closeCart]
+);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

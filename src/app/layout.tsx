@@ -3,6 +3,8 @@ import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
+import { AuthProvider } from "@/context/AuthContext";
+import AuthModal from "@/components/AuthModal";
 
 const vazir = Vazirmatn({
   subsets: ["arabic"],
@@ -23,10 +25,13 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={vazir.variable}>
       <body className="bg-gray-50 text-gray-900 antialiased font-sans">
-        <CartProvider>
-          {children}
-          <CartDrawer />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            {children}
+            <CartDrawer />
+          </CartProvider>
+          <AuthModal />
+        </AuthProvider>
       </body>
     </html>
   );

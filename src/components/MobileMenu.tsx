@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -8,7 +9,7 @@ import { navLinks, storeInfo } from "@/data/mockData";
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-
+  const { user, openAuth, logout } = useAuth();
   const close = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
@@ -39,40 +40,43 @@ export default function MobileMenu() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        aria-label="باز کردن منو"
-        aria-expanded={isOpen}
-        className="rounded-full p-2.5 text-gray-700 transition hover:bg-gray-100 active:scale-95 md:hidden"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      {user ? (
+        <>
+          <p className="text-center font-semibold text-gray-900">{user.name}</p>
+          <button
+            type="button"
+            onClick={() => {
+              close();
+              logout();
+            }}
+            className="w-full rounded-xl border border-gray-200 bg-white py-3 font-semibold text-gray-700 transition hover:bg-gray-100"
+          >
+            خروج از حساب
+          </button>
+        </>
+      ) : (
+     null
+      )}
 
       {mounted &&
         createPortal(
           <div
-            className={`fixed inset-0 z-[70] transition-[visibility] duration-300 md:hidden ${
-              isOpen ? "visible" : "invisible"
-            }`}
+            className={`fixed inset-0 z-[70] transition-[visibility] duration-300 md:hidden ${isOpen ? "visible" : "invisible"
+              }`}
             aria-hidden={!isOpen}
           >
             <div
               onClick={close}
-              className={`absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 ${
-                isOpen ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"
+                }`}
             />
 
             <aside
               role="dialog"
               aria-modal="true"
               aria-label="منوی اصلی"
-              className={`absolute inset-y-0 start-0 flex w-[85%] max-w-sm flex-col rounded-e-3xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
-                isOpen ? "translate-x-0" : "ltr:-translate-x-full rtl:translate-x-full"
-              }`}
+              className={`absolute inset-y-0 start-0 flex w-[85%] max-w-sm flex-col rounded-e-3xl bg-white shadow-2xl transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "ltr:-translate-x-full rtl:translate-x-full"
+                }`}
             >
               <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
                 <div className="flex items-center gap-2.5">
@@ -99,11 +103,10 @@ export default function MobileMenu() {
                     <li
                       key={link.href}
                       style={{ transitionDelay: isOpen ? `${120 + index * 50}ms` : "0ms" }}
-                      className={`transition duration-300 ${
-                        isOpen
-                          ? "translate-x-0 opacity-100"
-                          : "opacity-0 ltr:-translate-x-4 rtl:translate-x-4"
-                      }`}
+                      className={`transition duration-300 ${isOpen
+                        ? "translate-x-0 opacity-100"
+                        : "opacity-0 ltr:-translate-x-4 rtl:translate-x-4"
+                        }`}
                     >
                       <Link
                         href={link.href}

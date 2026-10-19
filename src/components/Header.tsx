@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthButton from "./AuthButton";
 import { navLinks, storeInfo } from "@/data/mockData";
 import CartButton from "./CartButton";
 import MobileMenu from "./MobileMenu";
@@ -32,12 +33,7 @@ export default function Header() {
 
           <div className="flex items-center gap-2">
             <CartButton />
-            <button
-              type="button"
-              className="hidden items-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm shadow-blue-600/25 transition hover:bg-blue-700 active:scale-95 sm:flex"
-            >
-              ورود / ثبت‌نام
-            </button>
+            <AuthButton />
           </div>
         </div>
       </div>

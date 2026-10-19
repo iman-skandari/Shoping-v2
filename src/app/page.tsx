@@ -9,14 +9,20 @@ import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+type Props = {
+  searchParams: Promise<{ category?: string }>;
+};
+
+export default async function Home({ searchParams }: Props) {
+  const { category } = await searchParams;
+
   return (
     <main>
       <Header />
       <Hero />
       <Reveal><Benefits /></Reveal>
       <Reveal><Categories /></Reveal>
-      <Reveal><FeaturedProducts /></Reveal>
+      <Reveal><FeaturedProducts category={category} /></Reveal>
       <Reveal><OfferBanner /></Reveal>
       <Reveal><Testimonials /></Reveal>
       <Reveal><Newsletter /></Reveal>

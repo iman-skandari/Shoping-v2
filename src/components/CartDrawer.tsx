@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { formatNumber, formatPrice, getPricing } from "@/data/mockData";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useCart } from "@/context/CartContext";
-import { formatNumber, formatPrice } from "@/data/mockData";
 import QuantityStepper from "./QuantityStepper";
 
 export default function CartDrawer() {
@@ -39,18 +40,16 @@ export default function CartDrawer() {
     >
       <div
         onClick={closeCart}
-        className={`absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       <aside
         role="dialog"
         aria-modal="true"
         aria-label="سبد خرید"
-        className={`absolute inset-y-0 end-0 flex w-full max-w-md flex-col bg-white shadow-2xl transition-transform duration-300 ease-out ${
-          isOpen ? "translate-x-0" : "translate-x-full rtl:-translate-x-full"
-        }`}
+        className={`absolute inset-y-0 end-0 flex w-full max-w-md flex-col bg-white shadow-2xl transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full rtl:-translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
           <div>
@@ -93,7 +92,11 @@ export default function CartDrawer() {
             <ul className="flex-1 divide-y divide-gray-100 overflow-y-auto px-5">
               {items.map(({ product, quantity }) => (
                 <li key={product.id} className="flex gap-4 py-4">
-                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100">
+                  <Link
+                    href={`/products/${product.id}`}
+                    onClick={closeCart}
+                    className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100"
+                  >
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -101,12 +104,18 @@ export default function CartDrawer() {
                       sizes="80px"
                       className="object-cover"
                     />
-                  </div>
+                  </Link>
 
                   <div className="flex min-w-0 flex-1 flex-col justify-between gap-2">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-gray-900">
-                        {product.name}
+                        <Link
+                          href={`/products/${product.id}`}
+                          onClick={closeCart}
+                          className="transition hover:text-blue-600"
+                        >
+                          {product.name}
+                        </Link>
                       </h3>
                       <button
                         type="button"
@@ -143,12 +152,13 @@ export default function CartDrawer() {
                   {formatPrice(totalPrice)}
                 </span>
               </div>
-              <button
-                type="button"
-                className="w-full rounded-xl bg-blue-600 py-3.5 font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-700 active:scale-[0.99] transition"
+              <Link
+                href="/checkout"
+                onClick={closeCart}
+                className="block w-full rounded-xl bg-blue-600 py-3.5 text-center font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 active:scale-[0.99]"
               >
                 ادامه فرایند خرید
-              </button>
+              </Link>
               <button
                 type="button"
                 onClick={clear}

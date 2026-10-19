@@ -13,10 +13,10 @@ export type Product = {
 };
 export const navLinks = [
   { href: "/", label: "خانه" },
-  { href: "#categories", label: "دسته‌بندی‌ها" },
-  { href: "#products", label: "محصولات" },
-  { href: "#testimonials", label: "نظرات مشتریان" },
-  { href: "#about", label: "درباره ما" },
+  { href: "/#categories", label: "دسته‌بندی‌ها" },
+  { href: "/#products", label: "محصولات" },
+  { href: "/#testimonials", label: "نظرات مشتریان" },
+  { href: "/#about", label: "درباره ما" },
 ];
 export type Category = {
   id: number;
@@ -265,3 +265,121 @@ export function getPricing(product: Product) {
   }
   return { unitPrice: product.price, listPrice: product.originalPrice ?? product.price };
 }
+export type ProductDetails = {
+  brand: string;
+  warranty: string;
+  gallery?: string[];
+  features: string[];
+  specs: { label: string; value: string }[];
+};
+
+export const productDetails: Record<number, ProductDetails> = {
+  1: {
+    brand: "Sony",
+    warranty: "۱۸ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["نویزکنسلینگ هوشمند با ۸ میکروفون", "۳۰ ساعت شارژدهی", "اتصال همزمان به دو دستگاه"],
+    specs: [
+      { label: "نوع اتصال", value: "بلوتوث ۵.۲" },
+      { label: "مدت شارژ", value: "۳۰ ساعت" },
+      { label: "وزن", value: "۲۵۰ گرم" },
+      { label: "رنگ", value: "مشکی" },
+    ],
+  },
+  2: {
+    brand: "Apple",
+    warranty: "۱۲ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["حذف نویز فعال", "صدای فضایی با ردیابی حرکت سر", "کیس شارژ مجهز به بلندگو"],
+    specs: [
+      { label: "نوع اتصال", value: "بلوتوث ۵.۳" },
+      { label: "مقاومت در برابر آب", value: "IPX4" },
+      { label: "شارژدهی", value: "۶ ساعت (۳۰ ساعت با کیس)" },
+      { label: "رنگ", value: "سفید" },
+    ],
+  },
+  3: {
+    brand: "Keychron",
+    warranty: "۱۲ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["سوییچ‌های hot-swappable", "اتصال بلوتوث و سیمی", "نورپردازی RGB"],
+    specs: [
+      { label: "چیدمان", value: "۷۵٪" },
+      { label: "سوییچ", value: "Gateron G Pro" },
+      { label: "اتصال", value: "بلوتوث ۵.۱ / USB-C" },
+      { label: "سازگاری", value: "ویندوز و مک" },
+    ],
+  },
+  4: {
+    brand: "Logitech",
+    warranty: "۲۴ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["وزن فوق سبک ۶۳ گرم", "سنسور HERO 25K", "اتصال بی‌سیم Lightspeed"],
+    specs: [
+      { label: "حداکثر DPI", value: "۲۵۶۰۰" },
+      { label: "باتری", value: "۷۰ ساعت" },
+      { label: "وزن", value: "۶۳ گرم" },
+      { label: "اتصال", value: "بی‌سیم ۲.۴ گیگاهرتز" },
+    ],
+  },
+  5: {
+    brand: "Anker",
+    warranty: "۱۸ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["شارژ سریع PD 30W", "دو خروجی همزمان", "ظرفیت ۲۰۰۰۰ میلی‌آمپرساعت"],
+    specs: [
+      { label: "ظرفیت", value: "۲۰۰۰۰ mAh" },
+      { label: "خروجی", value: "USB-C و USB-A" },
+      { label: "توان", value: "۳۰ وات" },
+      { label: "وزن", value: "۳۵۰ گرم" },
+    ],
+  },
+  6: {
+    brand: "Baseus",
+    warranty: "۱۲ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["تکنولوژی GaN با حرارت کمتر", "سه پورت همزمان", "سازگار با لپ‌تاپ و موبایل"],
+    specs: [
+      { label: "توان خروجی", value: "۶۵ وات" },
+      { label: "تعداد پورت", value: "۳ پورت" },
+      { label: "ورودی", value: "۱۰۰ تا ۲۴۰ ولت" },
+      { label: "پروتکل", value: "PD 3.0 / QC 4.0" },
+    ],
+  },
+  7: {
+    brand: "Hoopa",
+    warranty: "۶ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["چرم مصنوعی مقاوم", "جیب ضدضربه لپ‌تاپ", "جیب‌های جداگانه برای لوازم"],
+    specs: [
+      { label: "سایز", value: "تا ۱۵ اینچ" },
+      { label: "جنس", value: "چرم مصنوعی" },
+      { label: "رنگ", value: "قهوه‌ای" },
+      { label: "وزن", value: "۸۰۰ گرم" },
+    ],
+  },
+  8: {
+    brand: "JBL",
+    warranty: "۱۸ ماه گارانتی",
+    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
+    features: ["ضدآب و ضدگرد و غبار IP67", "۱۲ ساعت پخش مداوم", "قابلیت PartyBoost"],
+    specs: [
+      { label: "توان", value: "۳۰ وات" },
+      { label: "مقاومت", value: "IP67" },
+      { label: "اتصال", value: "بلوتوث ۵.۱" },
+      { label: "باتری", value: "۱۲ ساعت" },
+    ],
+  },
+};
+
+export function getProductById(id: number) {
+  return products.find((p) => p.id === id);
+}
+
+export function getProductDetails(id: number) {
+  return productDetails[id];
+}
+export const toEnglishDigits = (value: string) =>
+  value
+    .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
+    .replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
