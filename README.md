@@ -1,3 +1,6 @@
+در قسمت جزِییات کالاها به دلیل تکمیل نشدن تصاویر دیگر هر کالا به عکس های بندنشانی لود نمیشوند باید تصاویر اضافه شوند فقط...
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
