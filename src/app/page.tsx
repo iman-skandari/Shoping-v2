@@ -17,7 +17,7 @@ export default async function Home({ searchParams }: Props) {
   const { category } = await searchParams;
 
   return (
-    <main>
+    <main className="overflow-x-clip">
       <Header />
       <Hero />
       <Reveal><Benefits /></Reveal>

@@ -277,7 +277,6 @@ export const productDetails: Record<number, ProductDetails> = {
   1: {
     brand: "Sony",
     warranty: "۱۸ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["نویزکنسلینگ هوشمند با ۸ میکروفون", "۳۰ ساعت شارژدهی", "اتصال همزمان به دو دستگاه"],
     specs: [
       { label: "نوع اتصال", value: "بلوتوث ۵.۲" },
@@ -289,7 +288,6 @@ export const productDetails: Record<number, ProductDetails> = {
   2: {
     brand: "Apple",
     warranty: "۱۲ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["حذف نویز فعال", "صدای فضایی با ردیابی حرکت سر", "کیس شارژ مجهز به بلندگو"],
     specs: [
       { label: "نوع اتصال", value: "بلوتوث ۵.۳" },
@@ -301,7 +299,6 @@ export const productDetails: Record<number, ProductDetails> = {
   3: {
     brand: "Keychron",
     warranty: "۱۲ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["سوییچ‌های hot-swappable", "اتصال بلوتوث و سیمی", "نورپردازی RGB"],
     specs: [
       { label: "چیدمان", value: "۷۵٪" },
@@ -313,7 +310,6 @@ export const productDetails: Record<number, ProductDetails> = {
   4: {
     brand: "Logitech",
     warranty: "۲۴ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["وزن فوق سبک ۶۳ گرم", "سنسور HERO 25K", "اتصال بی‌سیم Lightspeed"],
     specs: [
       { label: "حداکثر DPI", value: "۲۵۶۰۰" },
@@ -325,7 +321,6 @@ export const productDetails: Record<number, ProductDetails> = {
   5: {
     brand: "Anker",
     warranty: "۱۸ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["شارژ سریع PD 30W", "دو خروجی همزمان", "ظرفیت ۲۰۰۰۰ میلی‌آمپرساعت"],
     specs: [
       { label: "ظرفیت", value: "۲۰۰۰۰ mAh" },
@@ -337,7 +332,6 @@ export const productDetails: Record<number, ProductDetails> = {
   6: {
     brand: "Baseus",
     warranty: "۱۲ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["تکنولوژی GaN با حرارت کمتر", "سه پورت همزمان", "سازگار با لپ‌تاپ و موبایل"],
     specs: [
       { label: "توان خروجی", value: "۶۵ وات" },
@@ -349,7 +343,6 @@ export const productDetails: Record<number, ProductDetails> = {
   7: {
     brand: "Hoopa",
     warranty: "۶ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["چرم مصنوعی مقاوم", "جیب ضدضربه لپ‌تاپ", "جیب‌های جداگانه برای لوازم"],
     specs: [
       { label: "سایز", value: "تا ۱۵ اینچ" },
@@ -361,7 +354,6 @@ export const productDetails: Record<number, ProductDetails> = {
   8: {
     brand: "JBL",
     warranty: "۱۸ ماه گارانتی",
-    gallery: ["/images/products/1-2.svg", "/images/products/1-3.svg"],
     features: ["ضدآب و ضدگرد و غبار IP67", "۱۲ ساعت پخش مداوم", "قابلیت PartyBoost"],
     specs: [
       { label: "توان", value: "۳۰ وات" },
